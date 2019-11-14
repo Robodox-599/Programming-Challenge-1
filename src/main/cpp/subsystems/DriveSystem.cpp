@@ -7,16 +7,16 @@
 
 #include "subsystems/DriveSystem.h"
 
-DriveSystem::DriveSystem() : Subsystem("DriveSystem"), frontLeftMotor(1), backLeftMotor(2), frontRightMotor(3), frontLeftMotor(4)
+DriveSystem::DriveSystem() : Subsystem("DriveSystem"), frontLeftMotor(1), rearLeftMotor(2), frontRightMotor(3), rearRightMotor(4)
 {
   frontLeftMotor.SetInverted(true);
-  backLeftMotor.SetInverted(true);
+  rearLeftMotor.SetInverted(true);
   frontRightMotor.SetInverted(false);
-  backRightMotor.SetInverted(false);
+  rearRightMotor.SetInverted(false);
 
-  backLeftMotor.SetSensorPhase(false);
-  backRightMotor.SetSensorPhase(true);
-  }
+  rearLeftMotor.SetSensorPhase(false);
+  rearRightMotor.SetSensorPhase(true);
+}
 
 void DriveSystem::InitDefaultCommand() {
   
@@ -26,6 +26,7 @@ void DriveSystem::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+}
 
 void DriveSystem::PowerDrive(double axis)
 {
@@ -42,9 +43,50 @@ void DriveSystem::PowerDrive(double axis)
   {
     power = 0;
   }
-  
+
+
+
   frontLeftMotor.Set(ControlMode::PercentOutput, power);
   rearLeftMotor.Set(ControlMode::PercentOutput, power);
   frontRightMotor.Set(ControlMode::PercentOutput, power);
   rearRightMotor.Set(ControlMode::PercentOutput, power);
+  }
+
+  void DriveSystem::JoystickPercentDrive(double x, double y)
+{
+  double l;
+  double r;
+  if (y > 0.2)
+  {
+    y = (y - 0.2) * 1 / .8;
+  }
+  else if (y < -0.2)
+  {
+    y = (y + 0.2) * 1 / .8;
+  }
+  else
+  {
+    y = 0;
+  }
+
+  if (x > 0.2)
+  {
+    x = (x - 0.2) * 1 / .8;
+  }
+  else if (x < -0.2)
+  {
+    x = (x + 0.2) * 1 / .8;
+  }
+  else
+  {
+    x = 0;
+  }
+
+  l = -y + x;
+  r = -y - x;
+
+  frontLeftMotor.Set(ControlMode::PercentOutput, l);
+  rearLeftMotor.Set(ControlMode::PercentOutput, l);
+  frontRightMotor.Set(ControlMode::PercentOutput, r);
+  rearRightMotor.Set(ControlMode::PercentOutput, r);
 }

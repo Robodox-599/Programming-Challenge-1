@@ -9,13 +9,14 @@
 
 #include <frc/commands/Subsystem.h>
 #include <frc/WPILib.h>
+#include "ctre/phoenix.h"
 
 class DriveSystem : public frc::Subsystem {
  private:
-  TalonSRX* frontLeftMotor;
-  TalonSRX* frontRightMotor;
-  TalonSRX* backLeftMotor;
-  TalonSRX* backRightMotor;
+  TalonSRX frontLeftMotor;
+  TalonSRX rearLeftMotor;
+  TalonSRX frontRightMotor;
+  TalonSRX rearRightMotor;
 
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
@@ -23,6 +24,5 @@ class DriveSystem : public frc::Subsystem {
  public:
   DriveSystem();
   void InitDefaultCommand() override;
-  void JoystickVelocityDrive(double x, double y);
-  void JoystickPercentDrive(double x, double y);
+  void PowerDrive(double axis);
   };
