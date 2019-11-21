@@ -11,14 +11,17 @@
 JoystickDrive::JoystickDrive() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
-  Requires(&globalRobot.DriveSystem);
+  Requires(&globalRobot.driveSystem);
 }
 
 // Called just before this Command runs the first time
 void JoystickDrive::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void JoystickDrive::Execute() {}
+void JoystickDrive::Execute() 
+{
+  globalRobot.driveSystem.JoystickPercentDrive(globalRobot.oi.xbox1->GetRawAxis(4), globalRobot.oi.xbox1->GetRawAxis(1));
+}
 
 // Make this return true when this Command no longer needs to run execute()
 bool JoystickDrive::IsFinished() { return false; }

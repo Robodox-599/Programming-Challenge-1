@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/DriveSystem.h"
+#include "commands/JoystickDrive.h"
 
 DriveSystem::DriveSystem() : Subsystem("DriveSystem"), frontLeftMotor(1), rearLeftMotor(2), frontRightMotor(3), rearRightMotor(4)
 {
@@ -20,6 +21,7 @@ DriveSystem::DriveSystem() : Subsystem("DriveSystem"), frontLeftMotor(1), rearLe
 
 void DriveSystem::InitDefaultCommand() {
   
+  SetDefaultCommand(new JoystickDrive());
   
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
@@ -82,8 +84,8 @@ void DriveSystem::PowerDrive(double axis)
     x = 0;
   }
 
-  l = -y + x;
-  r = -y - x;
+  l = -y - x;
+  r = -y + x;
 
   frontLeftMotor.Set(ControlMode::PercentOutput, l);
   rearLeftMotor.Set(ControlMode::PercentOutput, l);

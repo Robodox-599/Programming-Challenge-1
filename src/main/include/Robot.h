@@ -11,7 +11,9 @@
 #include <frc/commands/Command.h>
 #include <frc/smartdashboard/SendableChooser.h>
 
+
 #include "OI.h"
+#include "subsystems/DriveSystem.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -25,6 +27,9 @@ class Robot : public frc::TimedRobot {
   void TeleopInit() override;
   void TeleopPeriodic() override;
   void TestPeriodic() override;
+
+  OI oi;
+  DriveSystem driveSystem;
 
  private:
   // Have it null by default so that if testing teleop it

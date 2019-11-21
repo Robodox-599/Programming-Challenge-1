@@ -12,5 +12,9 @@
 OI::OI() {
   xbox1 = new frc::Joystick(0);
   // Process operator interface input here.
-
+  frc::JoystickButton *Buttonx9_LeftJoystick = new frc::JoystickButton(xbox1, 9);
+  frc::JoystickButton *Buttonx10_RightJoystick = new frc::JoystickButton(xbox1, 10);
 }
+
+
+
