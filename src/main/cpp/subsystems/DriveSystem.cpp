@@ -10,13 +10,13 @@
 
 DriveSystem::DriveSystem() : Subsystem("DriveSystem"), frontLeftMotor(1), rearLeftMotor(2), frontRightMotor(3), rearRightMotor(4)
 {
-  frontLeftMotor.SetInverted(true);
-  rearLeftMotor.SetInverted(true);
-  frontRightMotor.SetInverted(false);
-  rearRightMotor.SetInverted(false);
+  frontLeftMotor.SetInverted(false);
+  rearLeftMotor.SetInverted(false);
+  frontRightMotor.SetInverted(true);
+  rearRightMotor.SetInverted(true);
 
-  rearLeftMotor.SetSensorPhase(false);
-  rearRightMotor.SetSensorPhase(true);
+  rearLeftMotor.SetSensorPhase(true);
+  rearRightMotor.SetSensorPhase(false);
 }
 
 void DriveSystem::InitDefaultCommand() {
@@ -35,11 +35,11 @@ void DriveSystem::PowerDrive(double axis)
   float power;
   if(axis > 0)
   {
-    power = -0.1;
+    power = -0.001;
   }
   else if(axis < 0)
   {
-    power = 0.1;
+    power = 0.001;
   }
   else
   {
@@ -60,7 +60,7 @@ void DriveSystem::PowerDrive(double axis)
   double r;
   if (y > 0.2)
   {
-    y = (y - 0.2) * 1 / .8;
+    y = (y - 0.2  ) * 1 / .8;
   }
   else if (y < -0.2)
   {
@@ -87,8 +87,8 @@ void DriveSystem::PowerDrive(double axis)
   l = -y - x;
   r = -y + x;
 
-  frontLeftMotor.Set(ControlMode::PercentOutput, l);
-  rearLeftMotor.Set(ControlMode::PercentOutput, l);
-  frontRightMotor.Set(ControlMode::PercentOutput, r);
-  rearRightMotor.Set(ControlMode::PercentOutput, r);
+  frontLeftMotor.Set(ControlMode::PercentOutput, r);
+  rearLeftMotor.Set(ControlMode::PercentOutput, r);
+  frontRightMotor.Set(ControlMode::PercentOutput, l);
+  rearRightMotor.Set(ControlMode::PercentOutput, l);
 }
