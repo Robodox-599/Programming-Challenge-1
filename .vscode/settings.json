@@ -12,6 +12,10 @@
     ".project": true
   },
   "C_Cpp.intelliSenseEngineFallback": "Enabled",
+<<<<<<< HEAD
+  "C_Cpp.default.configurationProvider": "vscode-wpilib"
+=======
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
   "C_Cpp.configurationWarnings": "Disabled"
+>>>>>>> 6c44a44fb6aa2165a3f9aefa50bbebf5af2ceba3
 }
