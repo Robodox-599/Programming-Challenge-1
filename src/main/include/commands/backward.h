@@ -8,13 +8,18 @@
 #pragma once
 
 #include <frc/commands/Command.h>
+#include <frc/Timer.h>
 
 class backward : public frc::Command {
  public:
-  backward();
+  backward(double tp);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;
   void End() override;
   void Interrupted() override;
+
+  private:
+  frc::Timer *timer;
+  double timePeriod;
 };

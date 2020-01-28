@@ -20,18 +20,19 @@ forward::forward(double tp) {
 // Called just before this Command runs the first time
 void forward::Initialize() {
   timer->Start();
-  &globalRobot.driveSystem.JoystickPercentDrive(1,0);
+  globalRobot.driveSystem.JoystickPercentDrive(0.02,0);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void forward::Execute() {}
+
 // Make this return true when this Command no longer needs to run execute()
 bool forward::IsFinished() { return timer->HasPeriodPassed(timePeriod);
  }
 
 // Called once after isFinished returns true
 void forward::End() {
-&globalRobot.driveSystem.JoystickPercentDrive(0,0);
+globalRobot.driveSystem.JoystickPercentDrive(0,0);
 
 }
 

@@ -18,7 +18,7 @@ class forward : public frc::Command {
   bool IsFinished() override;
   void End() override;
   void Interrupted() override;
-
+  
   private:
   frc::Timer *timer;
   double timePeriod;
